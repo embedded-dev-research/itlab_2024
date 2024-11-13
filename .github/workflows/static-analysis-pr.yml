@@ -18,7 +18,7 @@ jobs:
       name: Run clang-tidy
       with:
         build_dir: build
-        apt_packages: ninja-build
+        apt_packages: ninja-build,scons
         cmake_command: cmake -S . -B build -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
         config_file: .clang-tidy
         exclude: 3rdparty
