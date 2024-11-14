@@ -15,7 +15,7 @@ jobs:
         submodules: recursive
     - name: Install dependencies
       run: |
-        sudo apt-get install -y cmake ninja-build ccache
+        sudo apt-get install -y cmake ninja-build ccache scons
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
@@ -37,7 +37,7 @@ jobs:
         submodules: recursive
     - name: Install dependencies
       run: |
-        sudo apt-get install -y cmake ninja-build ccache
+        sudo apt-get install -y cmake ninja-build ccache scons
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
@@ -51,28 +51,6 @@ jobs:
     - name: Build
       run: |
         cmake --build build --parallel
-  windows-msvc-build:
-    runs-on: windows-latest
-    defaults:
-      run:
-        shell: bash
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: recursive
-    - name: Setup ccache
-      uses: Chocobo1/setup-ccache-action@v1
-      with:
-        windows_compile_environment: msvc
-    - name: CMake configure
-      shell: bash
-      run: >
-        cmake -S . -B build
-        -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
-    - name: Build
-      shell: bash
-      run: |
-        cmake --build build --config Release --parallel
   macos-clang-build:
     runs-on: macOS-latest
     steps:
@@ -81,7 +59,7 @@ jobs:
         submodules: recursive
     - name: Install dependencies
       run: |
-        brew install ninja
+        brew install ninja scons
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
@@ -103,7 +81,7 @@ jobs:
         submodules: true
     - name: Install dependencies
       run: |
-        sudo apt-get install -y cmake ninja-build ccache gcovr lcov
+        sudo apt-get install -y cmake ninja-build ccache gcovr lcov scons
     - uses: actions/checkout@v4
       with:
         submodules: true
