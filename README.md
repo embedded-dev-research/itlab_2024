@@ -9,10 +9,10 @@
 1. Instal package manager *pip*.
 2. Open directory where you want to save the library.
 3. Open a terminal and execute these commands:
-/```txt
+```
 git clone <https://github.com/onnx/onnx.git>
 cd onnx
 git submodule update --init --recursive
 pip install -e . -v
-/```
+```
 4. Open the code editor and run the examples.
