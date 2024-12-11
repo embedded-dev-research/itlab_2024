@@ -7,10 +7,10 @@
 ## __How to build ONNX library__
 
 1. Instal package manager *pip*.
-2. Open directory where you want to save the library.
+2. Open directory where you want to save the [library](https://github.com/onnx/onnx.git).
 3. Open a terminal and execute these commands:
 ```
-git clone [https://github.com/onnx/onnx.git](https://github.com/onnx/onnx.git)
+git clone https://github.com/onnx/onnx.git
 cd onnx
 git submodule update --init --recursive
 pip install -e . -v
