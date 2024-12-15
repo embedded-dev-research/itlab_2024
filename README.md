@@ -19,7 +19,7 @@
   make install
   ```
 2. Instal package manager *pip*.
-3. Open directory where you want to save the [library](https://github.com/onnx/onnx.git).
+3. Open directory where you want to save the [onnx library](https://github.com/onnx/onnx.git).
 4. Open a terminal and execute these commands:
 ```
 git clone https://github.com/onnx/onnx.git
