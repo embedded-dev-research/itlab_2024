@@ -37,4 +37,5 @@ source .venv/bin/activate
 ```
 
 >to install pip `sudo apt-get install -y python3-pip`
+>
 >to install venv `sudo apt-get install -y python3-venv`
