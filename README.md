@@ -27,8 +27,10 @@ cd onnx
 git submodule update --init --recursive
 pip3 install -e . -v
 ```
+
 *when you use pip, you need to use **venv** to avoid conflict between package managers (apt and pip)*
-*in source(onnx) directory*
+
+*in source(onnx) directory execute these commands:*
 ```
 python3 -m venv env
 source .venv/bin/activate
