@@ -19,16 +19,21 @@
     
 4. Get a YOLO model
    
-    To run the examples we will also need a YOLO model in ONNX format.
+    To run the examples we will need a YOLO model in ONNX format.
    
-    Install ultralyrics using pip (preferably in python venv):
+    Create python venv:
     ```
-    pip install ultralytics
+    python -m venv <venv dir>
     ```
 
-    Activate python venv if you use it
+    Activate python venv
     ```
     source <venv dir>/bin/activate
+    ```
+
+    Install ultralyrics using pip:
+    ```
+    pip install ultralytics
     ```
 
     Get a YOLO model
