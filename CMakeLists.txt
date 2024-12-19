@@ -6,7 +6,7 @@ project(${ProjectName})
 
 include_directories(include)
 
-add_subdirectory(3rdparty/googletest)
+add_subdirectory(3rdparty/googletest/gtest)
 add_subdirectory(src/graph)
 add_subdirectory(test)
 
