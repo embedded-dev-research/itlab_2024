@@ -7,7 +7,7 @@
 ## __How to build ONNX library on Linux(Ubuntu)__
 
 1. Install [Protocol Buffer](https://github.com/protocolbuffers/protobuf.git):
-* In another directory open a terminal and execute these commands:
+* In other directory open a terminal and execute these commands:
   ```
   git clone https://github.com/protocolbuffers/protobuf.git
   cd protobuf
@@ -25,6 +25,7 @@
 git clone https://github.com/onnx/onnx.git
 cd onnx
 git submodule update --init --recursive
+set CMAKE_ARGS=-DONNX_USE_LITE_PROTO=ON
 pip3 install -e . -v
 ```
 
@@ -32,7 +33,7 @@ pip3 install -e . -v
 
 *in source(onnx) directory execute these commands:*
 ```
-python3 -m venv env
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 
