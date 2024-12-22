@@ -9,45 +9,42 @@
 
 1. OpenCV installation
    
-    We will need OpenCV library to run the example. You can install it in linux using this [guide](https://docs.opencv.org/4.10.0/d7/d9f/tutorial_linux_install.html)
+   We will need OpenCV library to run the example -> [OpenCV installation guide](https://docs.opencv.org/4.10.0/d7/d9f/tutorial_linux_install.html)
 
 2. Clone ultralyrics repository
-    ```
-    git clone https://github.com/ultralytics/ultralytics
-    cd ultralytics
-    ```
+   ```
+   git clone https://github.com/ultralytics/ultralytics
+   cd ultralytics
+   ```
     
 4. Get a YOLO model
    
-    To run the examples we will need a YOLO model in ONNX format.
+   We aslo will need a YOLO model in ONNX format.
    
-    Create python venv:
-    ```
-    python -m venv <venv dir>
-    ```
+   Create and activate python venv
+   ```
+   python -m venv <venv dir>
+   source <venv dir>/bin/activate
+   ```
 
-    Activate python venv
-    ```
-    source <venv dir>/bin/activate
-    ```
+   Install ultralyrics using pip
+   ```
+   pip install ultralytics
+   ```
 
-    Install ultralyrics using pip:
-    ```
-    pip install ultralytics
-    ```
+   Get a YOLO model
+   ```
+   yolo export model=yolov8s.pt imgsz=480,640 format=onnx
+   ```
 
-    Get a YOLO model
-    ```
-    yolo export model=yolov8s.pt imgsz=480,640 format=onnx
-    ```
-
-5. Build the example
-    ```
-    cd examples/YOLOv8-CPP-Inference
-    cmake -S . -B build
-    cd build
-    make
-    ```
+5. Build and run the example
+   ```
+   cd examples/YOLOv8-CPP-Inference
+   cmake -S . -B build
+   cd build
+   make
+   ./YOLOv8-CPP-Inference
+   ```
     
-    Note that by default the CMake file will try to import the CUDA library to be used with the OpenCVs dnn (cuDNN) GPU Inference.
-    If your OpenCV build does not use CUDA/cuDNN you can remove that import call and run the example on CPU.
+   Note that by default the CMake file will try to import the CUDA library to be used with the OpenCVs dnn (cuDNN) GPU Inference.
+   If your OpenCV build does not use CUDA/cuDNN you can remove that import call and run the example on CPU.
