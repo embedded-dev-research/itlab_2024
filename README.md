@@ -27,7 +27,7 @@
    source <venv dir>/bin/activate
    ```
 
-   Install ultralyrics using pip
+   Install ultralytics using pip
    ```
    pip install ultralytics
    ```
@@ -43,7 +43,7 @@
    cmake -S . -B build
    cd build
    make
-   ./YOLOv8-CPP-Inference
+   ./Yolov8CPPInference
    ```
     
    Note that by default the CMake file will try to import the CUDA library to be used with the OpenCVs dnn (cuDNN) GPU Inference.
