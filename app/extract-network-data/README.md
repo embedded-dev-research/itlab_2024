@@ -19,7 +19,7 @@
     source <venv dir>/bin/activate
     ```
 
-    Install ultralyrics using pip:
+    Install ultralytics using pip:
     ```
     pip install ultralytics
     ```
