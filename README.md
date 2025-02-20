@@ -8,8 +8,8 @@
 1. Install necessary tools:
   
   ```
-   `sudo apt install -y python3-pip`
-    sudo apt install -y python3-venv`
+    sudo apt install -y python3-pip
+    sudo apt install -y python3-venv
     sudo apt install python3-pip python3-dev libprotobuf-dev protobuf-compiler
   ```
 2. Install package manager *pip*.
@@ -20,6 +20,7 @@ git clone https://github.com/onnx/onnx.git
 cd onnx
 git submodule update --init --recursive
 export CMAKE_ARGS=-DONNX_USE_LITE_PROTO=ON
+export CMAKE_ARGS="-DONNX_USE_PROTOBUF_SHARED_LIBS=ON"
 ```
 
 >*when you use pip, you need to use **venv** to avoid conflict between package managers (apt and pip)*
@@ -29,6 +30,5 @@ export CMAKE_ARGS=-DONNX_USE_LITE_PROTO=ON
 ```
 python3 -m venv .venv
 source .venv/bin/activate
-export CMAKE_ARGS="-DONNX_USE_PROTOBUF_SHARED_LIBS=ON"
 pip install -e . -v
 ```
