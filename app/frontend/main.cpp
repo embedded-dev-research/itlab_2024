@@ -6,7 +6,6 @@
 #include "onnx.pb.h"
 
 int main() {
-    
   std::ifstream model_file("<absolute path to yolo11x.onnx>", std::ios::binary); 
 
   if (!model_file.is_open()) {
