@@ -7,8 +7,7 @@
 
 int main() {
     
-  std::ifstream model_file("<absolute path to yolo11x.onnx>", 
-                          std::ios::binary); 
+  std::ifstream model_file("<absolute path to yolo11x.onnx>", std::ios::binary); 
 
   if (!model_file.is_open()) {
     std::cerr << "Failed to open model" << std::endl;
@@ -29,7 +28,7 @@ int main() {
     Layer.emplace_back(node.op_type());
   }
 
-  for (auto it : Layer){
+  for (auto it : Layer) {
     std::cout << it << std::endl;
   }
 
