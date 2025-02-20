@@ -22,9 +22,9 @@ git submodule update --init --recursive
 export CMAKE_ARGS=-DONNX_USE_LITE_PROTO=ON
 ```
 
-*when you use pip, you need to use **venv** to avoid conflict between package managers (apt and pip)*
-
-*in source(onnx) directory execute these commands:*
+>*when you use pip, you need to use **venv** to avoid conflict between package managers (apt and pip)*
+>
+>*in source(onnx) directory execute these commands:*
 
 ```
 python3 -m venv .venv
