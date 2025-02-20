@@ -28,7 +28,7 @@ export CMAKE_ARGS="-DONNX_USE_PROTOBUF_SHARED_LIBS=ON"
 >*in source(onnx) directory execute these commands:*
 
 ```
-python3 -m venv .venv
-source .venv/bin/activate
+python3 -m venv <venv dir>
+source <venv dir>/bin/activate
 pip install -e . -v
 ```
