@@ -10,7 +10,6 @@
 #include <string>
 #include <vector>
 
-
 int main(int argc, char** argv) {
   if (argc < 2) {
     std::cerr << "[fatal error] Path to an input image is missing\n";
