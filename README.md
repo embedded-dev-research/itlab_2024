@@ -48,3 +48,30 @@
     
    Note that by default the CMake file will try to import the CUDA library to be used with the OpenCVs dnn (cuDNN) GPU Inference.
    If your OpenCV build does not use CUDA/cuDNN you can remove that import call and run the example on CPU.
+
+## How to build ONNX library on Linux(Ubuntu)
+
+1. Install necessary tools:
+  ```
+  sudo apt-get install -y python3-pip
+  sudo apt-get install -y python3-ven
+  sudo apt-get install python3-pip python3-dev libprotobuf-dev protobuf-compiler
+  ```
+
+2. Open directory where you want to save the [onnx library](https://github.com/onnx/onnx.git).
+
+3. Open a terminal and execute these commands:
+  ```
+  git clone https://github.com/onnx/onnx.git
+  cd onnx
+  git submodule update --init --recursive
+  export CMAKE_ARGS=-DONNX_USE_LITE_PROTO=ON
+  export CMAKE_ARGS="-DONNX_USE_PROTOBUF_SHARED_LIBS=ON"
+  ```
+*when you use pip, you need to use **venv** to avoid conflict between package managers (apt and pip)*
+*in source(onnx) directory execute these commands:*
+  ```
+  python3 -m venv .venv
+  source .venv/bin/activate
+  pip install -e . -v
+  ```
