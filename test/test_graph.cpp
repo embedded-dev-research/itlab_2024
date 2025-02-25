@@ -1,7 +1,6 @@
 #include "gtest/gtest.h"
 #include "graph/graph.cpp"
 
-
 TEST(Graph, can_create_graph)
 {
 	ASSERT_NO_THROW(Graph g);
