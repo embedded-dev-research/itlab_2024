@@ -29,7 +29,6 @@ private:
 public:
 
     Graph();
-
     void addVertex(int id);
     void getVertex() const;
     void addEdge(int u, int v);
@@ -39,6 +38,7 @@ public:
     int edgeCount() const;
     bool empty() const;
     void printGraph() const;
+    bool bfs_helper(int start, int vert, bool flag, std::vector<int>* v_ord); 
     bool hasPath(int u, int v);
     std::vector<int> BFS(int start);
     ~Graph();

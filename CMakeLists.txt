@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.20)
 
 set(ProjectName "itlab")
 
@@ -6,7 +6,7 @@ project(${ProjectName})
 
 include_directories(include)
 
-add_subdirectory(3rdparty/googletest/gtest)
+add_subdirectory(3rdparty)
 add_subdirectory(src/graph)
 add_subdirectory(test)
 

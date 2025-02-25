@@ -92,51 +92,47 @@ void Graph::printGraph() const {
 }
 
 bool Graph::hasPath(int u, int v) {
-    if (vertices.find(u) != vertices.end() && vertices.find(v) != vertices.end()) {
-        std::unordered_map <int, bool> visited;
-        std::queue<int> queue;
-        queue.push(u);
-
-        while (!queue.empty()) {
-            int current = queue.front();
-            queue.pop();
-            if (current == v) { return true; }
-            visited[current] = true;
-
-            for (const int& neighbor : vertices[current]->getNeighbors())
-                if (!visited[neighbor])
-                    queue.push(neighbor);
-
-        }
-        return false;
-    }
+  if (vertices.find(u) == vertices.end() ||
+      vertices.find(v) == vertices.end()) {
+    return false;
+  }
+  return bfs_helper(u, v, true, nullptr);
 }
 
 std::vector<int> Graph::BFS(int start) {
-    std::vector<int> traversal_order;
-    std::unordered_map<int, bool> visited;
-    std::queue<int> queue;
+  std::vector<int> v_ord;
+  bfs_helper(start, -1, false, &v_ord);
+  return v_ord;
+}
 
-    visited[start] = true;
-    queue.push(start);
+bool Graph::bfs_helper(int start, int vert, bool flag, std::vector<int>* v_ord) {
+  std::unordered_map<int, bool> visited;
+  std::queue<int> queue;
 
-    while (!queue.empty()) {
-        int current = queue.front();
-        queue.pop();
-        traversal_order.push_back(current);
+  queue.push(start);
+  visited[start] = true;
 
-        if (vertices.find(current) != vertices.end()) { 
-            for (const int& neighbor : vertices[current]->getNeighbors()) {
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-                    queue.push(neighbor);
-                }
-            }
-        }
+  while (!queue.empty()) {
+    int current = queue.front();
+    queue.pop();
+
+    if (flag && current == vert) {
+      return true;
     }
-    //for (int i : traversal_order)
-    //    std::cout << i << " ";
-    return traversal_order;
+    if (v_ord != nullptr) {
+      v_ord->push_back(current);
+    }
+
+    if (vertices.find(current) != vertices.end()) {
+      for (const int& neighbor : vertices[current]->getNeighbors()) {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      }
+    }
+  }
+  return false;
 }
 
 Graph::~Graph() {
