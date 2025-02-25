@@ -54,7 +54,7 @@
 1. Install necessary tools:
   ```
   sudo apt-get install -y python3-pip
-  sudo apt-get install -y python3-ven
+  sudo apt-get install -y python3-venv
   sudo apt-get install python3-pip python3-dev libprotobuf-dev protobuf-compiler
   ```
 
