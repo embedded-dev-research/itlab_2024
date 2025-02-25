@@ -65,8 +65,7 @@
   git clone https://github.com/onnx/onnx.git
   cd onnx
   git submodule update --init --recursive
-  export CMAKE_ARGS=-DONNX_USE_LITE_PROTO=ON
-  export CMAKE_ARGS="-DONNX_USE_PROTOBUF_SHARED_LIBS=ON"
+  export CMAKE_ARGS='-DONNX_USE_LITE_PROTO=ON -DONNX_USE_PROTOBUF_SHARED_LIBS=ON'
   ```
 *when you use pip, you need to use **venv** to avoid conflict between package managers (apt and pip)*
 *in source(onnx) directory execute these commands:*
