@@ -1,5 +1,5 @@
-#include "ComputeLibrary/arm_compute/runtime/NEON/functions/NEElementwiseOperations.h"
-#include "ComputeLibrary/utils/Utils.h"
+#include "arm_compute/runtime/NEON/functions/NEElementwiseOperations.h"
+#include "utils/Utils.h"
 
 #include <iostream>
 using namespace arm_compute;
