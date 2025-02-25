@@ -4,6 +4,7 @@ add_executable(ConvolutionLayer ConvolutionLayer.cpp)
 add_executable(ElementwiseLayer ElementwiseLayer.cpp)
 
 include_directories(${ARM_DIR})
+include_directories(${ARM_DIR/include})
 link_directories(${ARM_DIR}/build)
 
 target_link_libraries(ConvolutionLayer arm_compute)
