@@ -58,7 +58,7 @@
   sudo apt-get install python3-pip python3-dev libprotobuf-dev protobuf-compiler
   ```
 
-2. Open directory where you want to save the [onnx library](https://github.com/onnx/onnx.git).
+2. Open directory where you want to save the [ONNX library](https://github.com/onnx/onnx.git).
 
 3. Open a terminal and execute these commands:
   ```
