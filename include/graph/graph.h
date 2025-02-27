@@ -1,18 +1,17 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-#include <iostream>
 #include <list>
-#include <queue>
 #include <unordered_map>
+#include <vector>
 
 class Vertex {
  private:
-  int id;
-  std::list<int> neighbors;
+  int id_;
+  std::list<int> neighbors_;
 
  public:
-  Vertex(int id);
+  Vertex(int id_);
   void addNeighbor(int neighbor);
   void removeNeighbor(int neighbor);
   void print() const;
@@ -22,15 +21,15 @@ class Vertex {
 
 class Graph {
  private:
-  std::unordered_map<int, Vertex*> vertices;
+  std::unordered_map<int, Vertex*> vertices_;
 
  public:
   Graph();
-  void addVertex(int id);
+  void addVertex(int id_);
   void getVertex() const;
   void addEdge(int u, int v);
   void removeEdge(int u, int v);
-  void removeVertex(int id);
+  void removeVertex(int id_);
   int vertexCount() const;
   int edgeCount() const;
   bool empty() const;

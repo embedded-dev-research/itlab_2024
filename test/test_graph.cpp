@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
-#include "graph/graph.cpp"
+#include "graph/graph.h"
+#include <vector>
 
 TEST(Graph, can_create_graph)
 {
