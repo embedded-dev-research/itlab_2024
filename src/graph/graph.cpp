@@ -72,13 +72,7 @@ void Graph::removeVertex(int id_) {
   }
 }
 
-int Graph::vertexCount() const {
-  int count = 0;
-  for (const auto& vertice : vertices_) {
-    count++;
-  }
-  return count;
-}
+int Graph::vertexCount() const { return static_cast<int>(vertices_.size()); }
 
 int Graph::edgeCount() const {
   int count = 0;

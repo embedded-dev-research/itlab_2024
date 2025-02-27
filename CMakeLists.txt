@@ -1,18 +1,15 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(itlab_2024)
-
-include(cmake/configure.cmake)
+set(ProjectName "itlab")
+project(${ProjectName})
 
 include_directories(include)
 
-enable_testing()
+include_directories(include)
 
 
-add_subdirectory(3rdparty)
-add_subdirectory(app)
-add_subdirectory(include)
-add_subdirectory(src)
+add_subdirectory(3rdparty/googletest)
+add_subdirectory(src/graph)
 add_subdirectory(test)
 
 # REPORT
