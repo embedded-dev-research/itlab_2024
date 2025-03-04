@@ -3,12 +3,10 @@
 #include <string>
 #include <vector>
 
-
 #include "onnx.pb.h"
 
 int main() {
   std::ifstream model_file("generated/yolo11x.onnx", std::ios::binary);
-
 
   if (!model_file.is_open()) {
     std::cerr << "Failed to open model" << std::endl;
