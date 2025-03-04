@@ -5,7 +5,7 @@ project(${ProjectName})
 
 include_directories(include)
 
-include_directories(include)
+enable_testing()
 
 
 add_subdirectory(3rdparty/googletest)

@@ -1,6 +1,7 @@
+
 file(GLOB_RECURSE TEST_FILES ./*.cpp)
 
-set(TestsName "run_tests")
+set(TestsName "run_test")
 
 add_executable(${TestsName} ${TEST_FILES})
 
