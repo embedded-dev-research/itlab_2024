@@ -20,14 +20,14 @@ int main() {
   }
   model_file.close();
 
-  std::vector<std::string> Layer;
+  std::vector<std::string> layer;
 
   for (int i = 0; i < model.graph().node_size(); ++i) {
     const onnx::NodeProto& node = model.graph().node(i);
-    Layer.emplace_back(node.op_type());
+    layer.emplace_back(node.op_type());
   }
 
-  for (auto it : Layer) {
+  for (auto it : layer) {
     std::cout << it << std::endl;
   }
 
