@@ -6,10 +6,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Protobuf REQUIRED)
 
-set(ONNX_GENERATED_DIR "<absolute path to generated>") 
+set(ONNX_GENERATED_DIR "./generated") 
 
 set(ONNX_PROTO_SRCS
-    "<absolute path to generated>/onnx.pb.cc"
+    "./generated/onnx.pb.cc"
 )
 
 set(SRC_FILES
@@ -17,9 +17,13 @@ set(SRC_FILES
     ${ONNX_PROTO_SRCS}
 )
 
+configure_file(${CMAKE_SOURCE_DIR}/generated/yolo11x.onnx
+               ${CMAKE_CURRENT_BINARY_DIR}/generated/yolo11x.onnx
+               COPYONLY)
+
 add_executable(ModelParser main.cpp ${ONNX_PROTO_SRCS}) 
 
-target_include_directories(ModelParser :
+target_include_directories(ModelParser PRIVATE
     ${ONNX_GENERATED_DIR} 
     ${Protobuf_INCLUDE_DIRS}
 )
