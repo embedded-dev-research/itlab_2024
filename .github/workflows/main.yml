@@ -16,6 +16,8 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y cmake ninja-build ccache scons
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
@@ -38,6 +40,8 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y cmake ninja-build ccache scons
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
@@ -60,6 +64,8 @@ jobs:
     - name: Install dependencies
       run: |
         brew install ninja scons
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
@@ -82,6 +88,8 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y cmake ninja-build ccache gcovr lcov scons
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
     - uses: actions/checkout@v4
       with:
         submodules: true
