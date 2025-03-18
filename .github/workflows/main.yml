@@ -16,6 +16,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y cmake ninja-build ccache scons
+        sudo apt-get install python3-dev libprotobuf-dev protobuf-compiler
         python -m pip install --upgrade pip
         python -m pip install -r requirements.txt
     - name: ccache
@@ -40,9 +41,9 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y cmake ninja-build ccache scons
+        sudo apt-get install python3-dev libprotobuf-dev protobuf-compiler
         python -m pip install --upgrade pip
         python -m pip install -r requirements.txt
-        python -m pip install protobuf==5.29.2
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
@@ -64,10 +65,20 @@ jobs:
         submodules: recursive
     - name: Install dependencies
       run: |
-        brew install ninja scons
+        brew install ninja scons 
+
+
+
+
+
+
+
+
+
+        
+         
         python -m pip install --upgrade pip
         python -m pip install -r requirements.txt
-        python -m pip install protobuf==5.29.2
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
@@ -90,9 +101,9 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y cmake ninja-build ccache gcovr lcov scons
+        sudo apt-get install python3-dev libprotobuf-dev protobuf-compiler
         python -m pip install --upgrade pip
         python -m pip install -r requirements.txt
-        python -m pip install protobuf==5.29.2
     - uses: actions/checkout@v4
       with:
         submodules: true
