@@ -9,7 +9,7 @@ enable_testing()
 
 
 add_subdirectory(3rdparty/googletest)
-add_subdirectory(src/graph)
+add_subdirectory(src)
 add_subdirectory(test)
 
 # REPORT
