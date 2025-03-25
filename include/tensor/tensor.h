@@ -13,7 +13,7 @@ struct Shape {
   size_t get_rank() const;
 };
 
-enum class Layout : std::uint8_t { kNchw, kNhwc, kNd };
+enum class Layout { kNchw, kNhwc, kNd };
 
 template <typename T>
 class Tensor {
