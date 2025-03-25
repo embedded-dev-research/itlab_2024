@@ -24,8 +24,8 @@ int main() {
     fill_random_tensor(input1, 0.f, 1.f);
     fill_random_tensor(input2, 0.f, 1.f);
 
-    NEMatMulLayer m; 
-    m.configure(&input1, &input2, &output);
+    NEMatMul m; 
+    m.configure(&input1, &input2, &output, MatMulInfo(), CpuMatMulSettings(), ActivationLayerInfo());
     m.run();
 
     output.print(std::cout);
