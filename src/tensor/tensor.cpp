@@ -5,9 +5,12 @@
 #include <iostream>
 #include <numeric>
 #include <stdexcept>
+#include <vector>
+#include <cstddef>
+#include <utility>
 
 Shape::Shape(std::vector<size_t> dims) : dimensions(std::move(dims)) {
-  total_elements = std::accumulate(dimensions.begin(), dimensions.end(), static_cast<size_t>(1), std::multiplies<size_t>());
+  total_elements = std::accumulate(dimensions.begin(), dimensions.end(), static_cast<size_t>(1), std::multiplies<>());
 }
 
 size_t Shape::get_rank() const { return dimensions.size(); }

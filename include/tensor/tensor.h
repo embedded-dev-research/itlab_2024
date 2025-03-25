@@ -1,11 +1,8 @@
 #ifndef TENSOR_H
 #define TENSOR_H
 
-#include <algorithm>
-#include <iostream>
-#include <numeric>
-#include <stdexcept>
 #include <vector>
+#include <cstddef>
 
 struct Shape {
   std::vector<size_t> dimensions;
@@ -16,7 +13,7 @@ struct Shape {
   size_t get_rank() const;
 };
 
-enum class Layout { kNchw, kNhwc, kNd };
+enum class Layout : std::uint8_t { kNchw, kNhwc, kNd };
 
 template <typename T>
 class Tensor {
