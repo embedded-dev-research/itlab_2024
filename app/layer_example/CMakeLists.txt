@@ -1,6 +1,6 @@
 set(ARM_DIR "${CMAKE_SOURCE_DIR}/3rdparty/ComputeLibrary")
 
-add_executable(MatMul MatMulLayerLayer.cpp)
+add_executable(MatMul MatMulLayer.cpp)
 
 include_directories(${ARM_DIR})
 include_directories(${ARM_DIR}/include)
