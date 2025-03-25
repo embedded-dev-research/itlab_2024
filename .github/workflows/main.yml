@@ -102,7 +102,7 @@ jobs:
         cmake --build build --parallel
     - name: Test
       run: |
-        build/bin/run_tests
+        build/bin/run_test
       env:
         CTEST_OUTPUT_ON_FAILURE: 1
     - name: Generate lcov Coverage Data
