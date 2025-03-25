@@ -1,15 +1,21 @@
 #include "./tensor/tensor.h"
 
+#include <algorithm>
+#include <functional>
+#include <iostream>
+#include <numeric>
+#include <stdexcept>
+
 Shape::Shape(std::vector<size_t> dims) : dimensions(std::move(dims)) {
-  total_elements = std::accumulate(dimensions.begin(), dimensions.end(), 1ULL, std::multiplies<int>());
+  total_elements = std::accumulate(dimensions.begin(), dimensions.end(), static_cast<size_t>(1), std::multiplies<size_t>());
 }
 
 size_t Shape::get_rank() const { return dimensions.size(); }
 
 template <typename T>
 Tensor<T>::Tensor(const Shape &sh, Layout l) : shape(sh), layout(l), data(sh.total_elements) {
-  if (sh.get_rank() == 4 && l == Layout::ND) {
-    std::cerr << "4D Tensor created with ND layout." << std::endl;
+  if (sh.get_rank() == 4 && l == Layout::kNd) {
+    std::cerr << "4D Tensor created with kNd layout." << '\n';
   }
 }
 
@@ -32,12 +38,12 @@ size_t Tensor<T>::get_linear_index(const std::vector<size_t> &indices) const {
   size_t stride = 1;
 
   if (shape.get_rank() == 4) {
-    if (layout == Layout::NCHW) {
+    if (layout == Layout::kNchw) {
       linear_index = indices[0] * (shape.dimensions[1] * shape.dimensions[2] *
                                    shape.dimensions[3]) +
                      indices[1] * (shape.dimensions[2] * shape.dimensions[3]) +
                      indices[2] * shape.dimensions[3] + indices[3];
-    } else if (layout == Layout::NHWC) {
+    } else if (layout == Layout::kNhwc) {
       linear_index = indices[0] * (shape.dimensions[1] * shape.dimensions[2] *
                                    shape.dimensions[3]) +
                      indices[1] * (shape.dimensions[2] * shape.dimensions[3]) +

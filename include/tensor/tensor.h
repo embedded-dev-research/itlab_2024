@@ -2,12 +2,9 @@
 #define TENSOR_H
 
 #include <algorithm>
-#include <cstddef>
-#include <functional>
-#include <iostream>  
+#include <iostream>
 #include <numeric>
 #include <stdexcept>
-#include <string>
 #include <vector>
 
 struct Shape {
@@ -19,24 +16,22 @@ struct Shape {
   size_t get_rank() const;
 };
 
-enum class Layout { NCHW, NHWC, ND };
+enum class Layout { kNchw, kNhwc, kNd };
 
-template <typename T> 
+template <typename T>
 class Tensor {
  public:
   Shape shape;
   Layout layout;
-  std::vector<T> data; 
-  Tensor(const Shape &sh, Layout l = Layout::ND);
-  Tensor(std::vector<size_t> dims, Layout l = Layout::ND);
+  std::vector<T> data;
+
+  Tensor(const Shape &sh, Layout l = Layout::kNd);
+  Tensor(std::vector<size_t> dims, Layout l = Layout::kNd);
 
   size_t get_linear_index(const std::vector<size_t> &indices) const;
 
   T &at(const std::vector<size_t> &indices);
   const T &at(const std::vector<size_t> &indices) const;
-
 };
 
 #endif
-
-    
