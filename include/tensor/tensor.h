@@ -2,6 +2,7 @@
 #define TENSOR_H
 
 #include <cstddef>
+#include <cstdint>
 #include <vector>
 
 struct Shape {
