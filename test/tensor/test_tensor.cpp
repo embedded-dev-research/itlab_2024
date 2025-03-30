@@ -1,4 +1,5 @@
-#include "./tensor/tensor.cpp"
+#include <stdexcept>
+
 #include "./tensor/tensor.h"
 #include "gtest/gtest.h"
 

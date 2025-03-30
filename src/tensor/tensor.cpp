@@ -2,7 +2,6 @@
 
 #include <algorithm>
 #include <cstddef>
-#include <functional>
 #include <iostream>
 #include <numeric>
 #include <stdexcept>
