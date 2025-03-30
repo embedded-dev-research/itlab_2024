@@ -1,8 +1,8 @@
 #ifndef TENSOR_H
 #define TENSOR_H
 
-#include <vector>
 #include <cstddef>
+#include <vector>
 
 struct Shape {
   std::vector<size_t> dimensions;

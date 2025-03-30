@@ -1,29 +1,33 @@
 #include "./tensor/tensor.h"
 
 #include <algorithm>
+#include <cstddef>
 #include <functional>
 #include <iostream>
 #include <numeric>
 #include <stdexcept>
-#include <vector>
-#include <cstddef>
 #include <utility>
+#include <vector>
 
 Shape::Shape(std::vector<size_t> dims) : dimensions(std::move(dims)) {
-  total_elements = std::accumulate(dimensions.begin(), dimensions.end(), static_cast<size_t>(1), [](size_t a, size_t b) { return a * b; });
+  total_elements = std::accumulate(dimensions.begin(), dimensions.end(),
+                                   static_cast<size_t>(1),
+                                   [](size_t a, size_t b) { return a * b; });
 }
 
 size_t Shape::get_rank() const { return dimensions.size(); }
 
 template <typename T>
-Tensor<T>::Tensor(const Shape &sh, Layout l) : shape(sh), layout(l), data(sh.total_elements) {
+Tensor<T>::Tensor(const Shape &sh, Layout l)
+    : shape(sh), layout(l), data(sh.total_elements) {
   if (sh.get_rank() == 4 && l == Layout::kNd) {
     std::cerr << "4D Tensor created with kNd layout." << '\n';
   }
 }
 
 template <typename T>
-Tensor<T>::Tensor(std::vector<size_t> dims, Layout l): Tensor(Shape(std::move(dims)), l) {}
+Tensor<T>::Tensor(std::vector<size_t> dims, Layout l)
+    : Tensor(Shape(std::move(dims)), l) {}
 
 
 template <typename T>
