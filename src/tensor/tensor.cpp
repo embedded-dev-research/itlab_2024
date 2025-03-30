@@ -8,6 +8,8 @@
 #include <utility>
 #include <vector>
 
+template class Tensor<double>;
+
 Shape::Shape(std::vector<size_t> dims) : dimensions(std::move(dims)) {
   total_elements = std::accumulate(dimensions.begin(), dimensions.end(),
                                    static_cast<size_t>(1),
