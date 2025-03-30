@@ -29,7 +29,6 @@ template <typename T>
 Tensor<T>::Tensor(std::vector<size_t> dims, Layout l)
     : Tensor(Shape(std::move(dims)), l) {}
 
-
 template <typename T>
 size_t Tensor<T>::get_linear_index(const std::vector<size_t> &indices) const {
   if (indices.size() != shape.get_rank()) {
