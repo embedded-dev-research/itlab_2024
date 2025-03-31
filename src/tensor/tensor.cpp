@@ -82,3 +82,4 @@ const T &Tensor<T>::at(const std::vector<size_t> &indices) const {
 }
 
 template class Tensor<double>;
+template class Tensor<float>;

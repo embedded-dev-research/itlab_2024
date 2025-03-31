@@ -1,42 +1,38 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+
 #include <list>
 #include <unordered_map>
 #include <vector>
-
-class Vertex {
- private:
-  int id_;
-  std::list<int> neighbors_;
-
- public:
-  Vertex(int id_);
-  void addNeighbor(int neighbor);
-  void removeNeighbor(int neighbor);
-  void print() const;
-  int getId() const;
-  const std::list<int>& getNeighbors() const;
-};
+#include "./layer/layer.h"
+#include "./tensor/tensor.h"
 
 class Graph {
  private:
-  std::unordered_map<int, Vertex*> vertices_;
+  std::unordered_map<int, Layer*> layers_;
+  Tensor<double> inputTensor_;
+  Tensor<double>* outputTensor_;
+  int start_ = -1;
+  int end_ = -1;
+  bool bfs_helper(int start, int vert, bool flag, std::vector<int>* v_ord) const;
 
  public:
   Graph();
-  void addVertex(int id_);
-  void getVertex() const;
-  void addEdge(int u, int v);
-  void removeEdge(int u, int v);
-  void removeVertex(int id_);
-  int vertexCount() const;
+
+  void addLayer(Layer& lay);
+  void getLayers() const;
+  void addEdge(Layer& layPrev, Layer& layNext);
+  void removeEdge(Layer& layPrev, Layer& layNext);
+  void removeLayer(Layer& lay);
+  int layerCount() const;
   int edgeCount() const;
   bool empty() const;
-  void printGraph() const;
-  bool bfs_helper(int start, int vert, bool flag, std::vector<int>* v_ord);
-  bool hasPath(int u, int v);
+  bool hasPath(Layer& layPrev, Layer& layNext) const;
   std::vector<int> BFS(int start);
+  void setInput(Layer& lay, Tensor<double>& vec);
+  void setOutput(Layer& lay, Tensor<double>& vec);
+  void inference();
   ~Graph();
 };
 
