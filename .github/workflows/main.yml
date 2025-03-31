@@ -16,7 +16,6 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y cmake ninja-build ccache scons
-        sudo apt-get install -y libopencv-dev
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
@@ -39,7 +38,6 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y cmake ninja-build ccache scons
-        sudo apt-get install -y libopencv-dev
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
@@ -62,7 +60,6 @@ jobs:
     - name: Install dependencies
       run: |
         brew install ninja scons
-        brew install opencv
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
@@ -85,7 +82,6 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y cmake ninja-build ccache gcovr lcov scons
-        sudo apt-get install -y libopencv-dev
     - uses: actions/checkout@v4
       with:
         submodules: true

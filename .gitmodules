@@ -7,3 +7,6 @@
 [submodule "3rdparty/onnx"]
 	path = 3rdparty/onnx
 	url = https://github.com/onnx/onnx
+[submodule "3rdparty/opencv"]
+	path = 3rdparty/opencv
+	url = https://github.com/opencv/opencv
