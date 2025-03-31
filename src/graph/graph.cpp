@@ -1,3 +1,4 @@
+#include "./graph/graph.h"
 #include <iostream>
 #include <list>
 #include <queue>
@@ -5,12 +6,10 @@
 #include <unordered_map>
 #include <vector>
 
-#include "./graph/graph.h"
 #include "./layer/layer.h"
 #include "./tensor/tensor.h"
 
-Graph::Graph()
-    : inputTensor_({}), outputTensor_(nullptr) {}
+Graph::Graph() : inputTensor_({}), outputTensor_(nullptr) {}
 
 bool Graph::bfs_helper(int start, int vert, bool flag,
                        std::vector<int>* v_ord) const {
