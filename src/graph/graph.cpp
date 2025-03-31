@@ -1,14 +1,16 @@
-#include <numeric>
 #include <queue>
 #include <stdexcept>
 #include <iostream>
+#include <list>
+#include <unordered_map>
+#include <vector>
 
 #include "./graph/graph.h"
 #include "./layer/layer.h"
 #include "./tensor/tensor.h"
 
 Graph::Graph()
-    : inputTensor_({}), outputTensor_(nullptr), start_(-1), end_(-1) {}
+    : inputTensor_({}), outputTensor_(nullptr) {}
 
 bool Graph::bfs_helper(int start, int vert, bool flag,
                        std::vector<int>* v_ord) const {
@@ -31,9 +33,9 @@ bool Graph::bfs_helper(int start, int vert, bool flag,
     }
 
     if (layers_.count(current) > 0) {
-      Layer* currentLayer = layers_.at(current);
+      Layer* current_layer = layers_.at(current);
 
-      for (Layer* neighbor : currentLayer->neighbors_) {
+      for (Layer* neighbor : current_layer->neighbors_) {
         if (visited.find(neighbor->getID()) == visited.end()) {
           visited[neighbor->getID()] = true;
           queue.push(neighbor->getID());
@@ -80,9 +82,9 @@ void Graph::removeEdge(Layer& layPrev, Layer& layNext) {
 }
 
 void Graph::removeLayer(Layer& lay) {
-  int layerID = lay.getID();
+  int layer_id = lay.getID();
 
-  if (layers_.find(layerID) == layers_.end()) {
+  if (layers_.find(layer_id) == layers_.end()) {
     return;
   }
 
@@ -90,15 +92,15 @@ void Graph::removeLayer(Layer& lay) {
     pair.second->removeNeighbor(&lay);
   }
 
-  auto it = layers_.find(layerID);
+  auto it = layers_.find(layer_id);
   if (it != layers_.end()) {
     layers_.erase(it);
   }
 
-  if (start_ == layerID) {
+  if (start_ == layer_id) {
     start_ = -1;
   }
-  if (end_ == layerID) {
+  if (end_ == layer_id) {
     end_ = -1;
   }
 }
@@ -164,24 +166,24 @@ void Graph::inference() {
     throw std::runtime_error("No path from start to end layer found.");
   }
 
-  Tensor<double> currentTensor = inputTensor_;
+  Tensor<double> current_tensor = inputTensor_;
 
-  for (int layerID : traversal) {
-    if (layers_.find(layerID) == layers_.end()) {
-      throw std::runtime_error("layerID out of range in traversal.");
+  for (int layer_id : traversal) {
+    if (layers_.find(layer_id) == layers_.end()) {
+      throw std::runtime_error("layer_id out of range in traversal.");
     }
-    Layer* currentLayer = layers_[layerID];
-    Tensor<double> tempOutputTensor(currentLayer->get_output_shape());
-    currentLayer->run(currentTensor, tempOutputTensor);
-    currentTensor = tempOutputTensor;
+    Layer* current_layer = layers_[layer_id];
+    Tensor<double> temp_output_tensor(current_layer->get_output_shape());
+    current_layer->run(current_tensor, temp_output_tensor);
+    current_tensor = temp_output_tensor;
 
-    if (layerID == end_) {
+    if (layer_id == end_) {
       if (outputTensor_ == nullptr) {
         throw std::runtime_error("Output tensor pointer is not set.");
       }
-      *outputTensor_ = currentTensor;
+      *outputTensor_ = current_tensor;
     }
   }
 }
 
-Graph::~Graph() {}
+Graph::~Graph() = default;
