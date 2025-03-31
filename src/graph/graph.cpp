@@ -72,7 +72,7 @@ void Graph::addEdge(Layer& layPrev, Layer& layNext) {
   if (layers_.find(layNext.getID()) == layers_.end()) {
     addLayer(layNext);
   }
-  layPrev.addNeighbor(&layNext);  // Используем метод addNeighbor
+  layPrev.addNeighbor(&layNext);
 }
 
 void Graph::removeEdge(Layer& layPrev, Layer& layNext) {
