@@ -15,7 +15,7 @@ class Graph {
   int start_ = -1;
   int end_ = -1;
   bool bfs_helper(int start, int vert, bool flag,
-	  std::vector<int>* v_ord) const;
+					std::vector<int>* v_ord) const;
 
  public:
   Graph();
