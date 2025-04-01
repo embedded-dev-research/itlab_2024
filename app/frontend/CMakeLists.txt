@@ -6,14 +6,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Protobuf REQUIRED)
 
-set(ONNX_GENERATED_DIR "./generated") 
+set(ONNX_GENERATED_DIR "${CMAKE_SOURCE_DIR}/generated") 
 
 set(ONNX_PROTO_SRCS
-    "./generated/onnx.pb.cc"
+    "${ONNX_GENERATED_DIR}/onnx.pb.cc"
 )
 
 set(ONNX_GENERATED_HEADER 
-    "./generated/onnx.pb.h"
+    "${ONNX_GENERATED_DIR}/onnx.pb.h"
 ) 
 
 set(SRC_FILES
@@ -21,11 +21,22 @@ set(SRC_FILES
     ${ONNX_PROTO_SRCS}
 )
 
-configure_file(${CMAKE_SOURCE_DIR}/generated/yolo11x.onnx
-               ${CMAKE_CURRENT_BINARY_DIR}/generated/yolo11x.onnx
-               COPYONLY)
+set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/onnx.pb.h PROPERTIES GENERATED TRUE)
+set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/onnx.pb.cc PROPERTIES GENERATED TRUE)
+set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/yolo11x.onnx PROPERTIES GENERATED TRUE)
 
-add_executable(ModelParser main.cpp ${ONNX_PROTO_SRCS}) 
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/generated)
+
+set(YOLO_SRC "${CMAKE_SOURCE_DIR}/generated/yolo11x.onnx")
+set(YOLO_DST "${CMAKE_CURRENT_BINARY_DIR}/generated/yolo11x.onnx")
+
+if(EXISTS "${YOLO_SRC}")
+    configure_file(${YOLO_SRC} ${YOLO_DST} COPYONLY)
+else()
+    file(WRITE "${YOLO_DST}" "")
+endif()
+
+add_executable(ModelParser ${SRC_FILES}) 
 
 target_include_directories(ModelParser PRIVATE
     ${ONNX_GENERATED_DIR} 
