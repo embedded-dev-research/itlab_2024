@@ -36,15 +36,6 @@ void Graph::addVertex(int id_) {
   }
 }
 
-void Graph::getVertex() const {
-  if (!this->empty()) {
-    for (const auto& vertice : vertices_) {
-      std::cout << vertice.first << " ";
-    }
-    std::cout << '\n';
-  }
-}
-
 void Graph::addEdge(int u, int v) {
   if (vertices_.find(u) == vertices_.end()) {
     addVertex(u);
@@ -72,9 +63,9 @@ void Graph::removeVertex(int id_) {
   }
 }
 
-int Graph::vertexCount() const { return static_cast<int>(vertices_.size()); }
+int Graph::getVertices() const { return static_cast<int>(vertices_.size()); }
 
-int Graph::edgeCount() const {
+int Graph::getEdges() const {
   int count = 0;
   for (const auto& vertice : vertices_) {
     count += (vertice.second->getNeighbors()).size();

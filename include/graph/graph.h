@@ -26,12 +26,11 @@ class Graph {
  public:
   Graph();
   void addVertex(int id_);
-  void getVertex() const;
   void addEdge(int u, int v);
   void removeEdge(int u, int v);
   void removeVertex(int id_);
-  int vertexCount() const;
-  int edgeCount() const;
+  int getVertices() const;
+  int getEdges() const;
   bool empty() const;
   void printGraph() const;
   bool bfs_helper(int start, int vert, bool flag, std::vector<int>* v_ord);
