@@ -15,6 +15,7 @@ jobs:
         submodules: recursive
     - name: Install dependencies
       run: |
+        sudo apt-get update
         sudo apt-get install -y cmake ninja-build ccache scons
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
@@ -28,7 +29,6 @@ jobs:
         -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
     - name: Build
       run: |
-        sudo apt-get update
         cmake --build build --parallel
   ubuntu-clang-build:
     runs-on: ubuntu-latest
@@ -38,6 +38,7 @@ jobs:
         submodules: recursive
     - name: Install dependencies
       run: |
+        sudo apt-get update
         sudo apt-get install -y cmake ninja-build ccache scons
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
@@ -50,8 +51,7 @@ jobs:
         -GNinja
         -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
     - name: Build
-      run:
-        sudo apt-get update |
+      run: |
         cmake --build build --parallel
   macos-clang-build:
     runs-on: macOS-latest
