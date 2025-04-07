@@ -23,7 +23,7 @@ TEST(Graph, cant_add_edge_with_same_id_to_graph) {
   Graph g;
 
   g.addEdge(1, 1);
-  
+
   ASSERT_EQ(0, g.getEdges());
 }
 
