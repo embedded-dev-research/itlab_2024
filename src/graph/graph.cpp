@@ -12,53 +12,9 @@
 
 Graph::Graph() : inputTensor_({}), outputTensor_(nullptr) {}
 
-bool Graph::bfs_helper(int start, int vert, bool flag,
-                       std::vector<int>* v_ord) const {
-  std::unordered_map<int, bool> visited;
-  std::queue<int> queue;
-
-  queue.push(start);
-  visited[start] = true;
-
-  while (!queue.empty()) {
-    int current = queue.front();
-    queue.pop();
-
-    if (flag && current == vert) {
-      return true;
-    }
-
-    if (v_ord != nullptr) {
-      v_ord->push_back(current);
-    }
-
-    if (layers_.count(current) > 0) {
-      Layer* current_layer = layers_.at(current);
-
-      for (Layer* neighbor : current_layer->neighbors_) {
-        if (visited.find(neighbor->getID()) == visited.end()) {
-          visited[neighbor->getID()] = true;
-          queue.push(neighbor->getID());
-        }
-      }
-    }
-  }
-
-  return false;
-}
-
 void Graph::addLayer(Layer& lay) {
   if (layers_.find(lay.getID()) == layers_.end()) {
     layers_[lay.getID()] = &lay;
-  }
-}
-
-void Graph::getLayers() const {
-  if (!this->empty()) {
-    for (const auto& layer : layers_) {
-      std::cout << layer.first << " ";
-    }
-    std::cout << '\n';
   }
 }
 
@@ -105,9 +61,9 @@ void Graph::removeLayer(Layer& lay) {
   }
 }
 
-int Graph::layerCount() const { return static_cast<int>(layers_.size()); }
+int Graph::getLayers() const { return static_cast<int>(layers_.size()); }
 
-int Graph::edgeCount() const {
+int Graph::getEdges() const {
   int count = 0;
   for (const auto& layer : layers_) {
     count += layer.second->neighbors_.size();
@@ -116,6 +72,41 @@ int Graph::edgeCount() const {
 }
 
 bool Graph::empty() const { return layers_.empty(); }
+
+bool Graph::bfs_helper(int start, int vert, bool flag,
+                       std::vector<int>* v_ord) const {
+  std::unordered_map<int, bool> visited;
+  std::queue<int> queue;
+
+  queue.push(start);
+  visited[start] = true;
+
+  while (!queue.empty()) {
+    int current = queue.front();
+    queue.pop();
+
+    if (flag && current == vert) {
+      return true;
+    }
+
+    if (v_ord != nullptr) {
+      v_ord->push_back(current);
+    }
+
+    if (layers_.count(current) > 0) {
+      Layer* current_layer = layers_.at(current);
+
+      for (Layer* neighbor : current_layer->neighbors_) {
+        if (visited.find(neighbor->getID()) == visited.end()) {
+          visited[neighbor->getID()] = true;
+          queue.push(neighbor->getID());
+        }
+      }
+    }
+  }
+
+  return false;
+}
 
 bool Graph::hasPath(Layer& layPrev, Layer& layNext) const {
   if (layers_.find(layPrev.getID()) == layers_.end() ||

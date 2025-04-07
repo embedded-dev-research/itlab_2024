@@ -21,12 +21,11 @@ class Graph {
   Graph();
 
   void addLayer(Layer& lay);
-  void getLayers() const;
   void addEdge(Layer& layPrev, Layer& layNext);
   void removeEdge(Layer& layPrev, Layer& layNext);
   void removeLayer(Layer& lay);
-  int layerCount() const;
-  int edgeCount() const;
+  int getLayers() const;
+  int getEdges() const;
   bool empty() const;
   bool hasPath(Layer& layPrev, Layer& layNext) const;
   std::vector<int> BFS(int start);
