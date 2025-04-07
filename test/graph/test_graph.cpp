@@ -122,8 +122,8 @@ TEST(Graph, check_graph_can_find_path_between_vertexes_after_delete) {
 TEST(Graph, can_create_bfs_path_in_empty_graph) {
   Graph g;
   std::vector<int> v1 = {0};
-
-  ASSERT_EQ(g.BFS(0),v1);
+  
+  ASSERT_EQ(g.BFS(0), v1);
 }
 
 TEST(Graph, check_bfs_path) {
