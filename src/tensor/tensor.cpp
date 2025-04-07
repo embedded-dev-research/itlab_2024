@@ -1,6 +1,8 @@
 #include "./tensor/tensor.h"
 
+#include <cstddef>
 #include <numeric>
+#include <utility>
 #include <vector>
 
 Shape::Shape(std::vector<size_t> dims) : dimensions(std::move(dims)) {

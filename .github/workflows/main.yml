@@ -28,6 +28,7 @@ jobs:
         -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
     - name: Build
       run: |
+        sudo apt-get update
         cmake --build build --parallel
   ubuntu-clang-build:
     runs-on: ubuntu-latest
@@ -49,7 +50,8 @@ jobs:
         -GNinja
         -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
     - name: Build
-      run: |
+      run:
+        sudo apt-get update |
         cmake --build build --parallel
   macos-clang-build:
     runs-on: macOS-latest
@@ -81,6 +83,7 @@ jobs:
         submodules: true
     - name: Install dependencies
       run: |
+        sudo apt-get update
         sudo apt-get install -y cmake ninja-build ccache gcovr lcov scons
     - uses: actions/checkout@v4
       with:
