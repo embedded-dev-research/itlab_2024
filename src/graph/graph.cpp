@@ -1,6 +1,5 @@
 #include "./graph/graph.h"
 
-#include <iostream>
 #include <list>
 #include <queue>
 #include <stdexcept>
