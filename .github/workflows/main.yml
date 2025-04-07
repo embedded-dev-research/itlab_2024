@@ -15,6 +15,7 @@ jobs:
         submodules: recursive
     - name: Install dependencies
       run: |
+        sudo apt-get update
         sudo apt-get install -y cmake ninja-build ccache scons
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
@@ -37,6 +38,7 @@ jobs:
         submodules: recursive
     - name: Install dependencies
       run: |
+        sudo apt-get update
         sudo apt-get install -y cmake ninja-build ccache scons
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
@@ -81,6 +83,7 @@ jobs:
         submodules: true
     - name: Install dependencies
       run: |
+        sudo apt-get update
         sudo apt-get install -y cmake ninja-build ccache gcovr lcov scons
     - uses: actions/checkout@v4
       with:
