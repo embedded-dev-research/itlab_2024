@@ -30,25 +30,25 @@ public:
         elementwise.configure(&input1, &input2, &output);
         elementwise.run();
     }
-    
+
     void Division() {
         NEElementwiseDivision elementwise;
         elementwise.configure(&input1, &input2, &output);
         elementwise.run();
     }
-    
+
     void Addition() {
         NEArithmeticAddition add;
-        add.configure(&input1, &input2, &output);
+        add.configure(&input1, &input2, &output, ConvertPolicy::WRAP);
         add.run();
     }
-    
+
     void Swish() {
         NEActivationLayer act;
         act.configure(&input1, &input2, ActivationLayerInfo(ActivationLayerInfo::ActivationFunction::SWISH));
         act.run();
     }
-    
+
     void Abs() {
         NEActivationLayer act;
         act.configure(&input1, &input2, ActivationLayerInfo(ActivationLayerInfo::ActivationFunction::ABS));
