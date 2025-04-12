@@ -18,9 +18,36 @@ public:
     std::list<Layer*> neighbors_; 
 };
 
+enum Model{ONNX, PYTORCH, OPENCV};
 
+class ModelParser {
+protected:
+    std::string _fileName;
 
-enum Model{ONNX, YOLO, OPENCV};
+public:
+    explicit ModelParser(std::string filename) : _fileName(std::move(filename)) {}
+    virtual ~ModelParser() = default;
+    virtual Graph Parse() = 0;
+};
+
+class ONNX_ModelParser : public ModelParser {
+public:
+    explicit ONNX_ModelParser(std::string filename) : ModelParser(std::move(filename)) {}
+    Graph Parse() override;
+};
+
+class OPENCV_ModelParser : public ModelParser {
+public:
+    explicit OPENCV_ModelParser(std::string filename) : ModelParser(std::move(filename)) {}
+    Graph Parse() override; 
+};
+
+// class PYTORCH_ModelParser : ModelParser{
+// public:
+    // explicit OPENCV_ModelParser(std::string filename) : ModelParser(std::move(filename)) {}
+    // Graph Parse() override; 
+// };
+
 
 class IR
 {
@@ -28,42 +55,22 @@ private:
     std::string _fileName;
     Graph _graph;
     Model _model;
+    ModelParser* _modelParser;
 
-    void _ONNX_modelParser(std::string filename);
-    void _YOLO_modelParser(std::string filename);
-    void _OPENCV_modelParser(std::string filename);
 public:
 
-    IR(std::string filename, Model model): _graph(){
-        _fileName = filename;
-        _model = model;
-        switch (_model)
-        {
-        case Model::ONNX:
-            _ONNX_modelParser(_fileName);
-            break;
+    IR(std::string filename, Model model);
 
-        case Model::OPENCV:
-            _OPENCV_modelParser(_fileName);
-            break;
+    const bool operator==(const Graph& graph) const;
 
-        case Model::YOLO:
-            _YOLO_modelParser(_fileName);
-            break;
-
-        default:
-            break;
-        }
-    }
-
-    void ChangeModelType(Model model){
-        _model = model;
-    }
+    // void ChangeModelType(Model model){
+    //     _model = model;
+    // }
         
-    void ChangeFile(std::string filename){
-        _fileName = filename;
-    }
+    // void ChangeFile(std::string filename){
+    //     _fileName = filename;
+    // }
 
-    ~IR() = default;
+    ~IR();
 };
 
