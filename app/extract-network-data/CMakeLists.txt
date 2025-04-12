@@ -4,7 +4,6 @@ project(extract-network-data)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 set(PROJECT_SOURCE_FILES

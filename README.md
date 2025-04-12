@@ -7,11 +7,7 @@
 
 ## Build and run ultralytics inference example
 
-1. OpenCV installation
-   
-   We will need OpenCV library to run the example -> [OpenCV installation guide](https://docs.opencv.org/4.10.0/d7/d9f/tutorial_linux_install.html)
-
-2. Clone ultralyrics repository
+1. Clone ultralyrics repository
    ```
    git clone https://github.com/ultralytics/ultralytics
    cd ultralytics
