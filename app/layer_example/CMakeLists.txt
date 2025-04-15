@@ -1,11 +1,9 @@
 set(ARM_DIR "${CMAKE_SOURCE_DIR}/3rdparty/ComputeLibrary")
 
-add_executable(ConvolutionLayer ConvolutionLayer.cpp)
-add_executable(ElementwiseLayer ElementwiseLayer.cpp)
+add_executable(PoolingLayer PoolingLayer.cpp)
 
 include_directories(${ARM_DIR})
-include_directories(${ARM_DIR/include})
-link_directories(${ARM_DIR}/build)
+include_directories(${ARM_DIR}/include)
+target_link_directories(PoolingLayer PUBLIC ${ARM_DIR}/build)
 
-target_link_libraries(ConvolutionLayer arm_compute)
-target_link_libraries(ElementwiseLayer arm_compute)
+target_link_libraries(PoolingLayer arm_compute)
