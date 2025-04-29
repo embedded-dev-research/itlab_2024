@@ -7,14 +7,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Protobuf REQUIRED)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/generated)
 
-set(ONNX_GENERATED_DIR "${CMAKE_SOURCE_DIR}/generated") 
+set(ONNX_GENERATED_DIR "${CMAKE_SOURCE_DIR}/app/frontend/build/generated") 
 
 set(ONNX_PROTO_SRCS
-    "${ONNX_GENERATED_DIR}/onnx.pb.cc"
+    "${ONNX_GENERATED_DIR}/app/frontend/build/onnx.pb.cc"
 )
 
 set(ONNX_GENERATED_HEADER 
-    "${ONNX_GENERATED_DIR}/onnx.pb.h"
+    "${ONNX_GENERATED_DIR}/app/frontend/build/onnx.pb.h"
 ) 
 
 set(SRC_FILES
