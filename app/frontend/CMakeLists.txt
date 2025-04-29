@@ -16,6 +16,7 @@ set(GENERATED_FILES
   "${ONNX_GENERATED_DIR}/yolo11x.onnx"
 )
 
+
 add_custom_command(
   OUTPUT ${GENERATED_FILES}
   COMMAND ${CMAKE_COMMAND} -E make_directory "${ONNX_GENERATED_DIR}"
