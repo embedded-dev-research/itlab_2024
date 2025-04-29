@@ -19,7 +19,7 @@ set(GENERATED_FILES
 add_custom_command(
   OUTPUT ${GENERATED_FILES}
   COMMAND ${CMAKE_COMMAND} -E make_directory "${ONNX_GENERATED_DIR}"
-  COMMAND bash ${SETUP_SCRIPT}
+  COMMAND bash ${SETUP_SCRIPT} "${ONNX_GENERATED_DIR}"
   WORKING_DIRECTORY "${ONNX_GENERATED_DIR}"
   DEPENDS ${SETUP_SCRIPT}
   COMMENT "Создаём каталог и генерируем ONNX-файлы"
@@ -36,7 +36,6 @@ set_source_files_properties(
   PROPERTIES GENERATED TRUE
 )
 
-# Исполнимый файл
 add_executable(ModelParser
   main.cpp
   "${ONNX_GENERATED_DIR}/onnx.pb.cc"
