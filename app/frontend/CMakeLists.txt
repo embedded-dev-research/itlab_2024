@@ -22,16 +22,24 @@ set(SRC_FILES
     ${ONNX_PROTO_SRCS}
 )
 
+set(SETUP_SCRIPT ${CMAKE_SOURCE_DIR}/GetModel.sh)
+
+
+set(GENERATED_FILES
+  ${ONNX_GENERATED_DIR}/onnx.pb.cc
+  ${ONNX_GENERATED_DIR}/onnx.pb.h
+  ${ONNX_GENERATED_DIR}/yolo11x.onnx
+)
+
 add_custom_command(
-  OUTPUT 
-    ${ONNX_GENERATED_DIR}
-    ${ONNX_GENERATED_DIR}/onnx.pb.cc
-    ${ONNX_GENERATED_DIR}/onnx.pb.h
-    ${ONNX_GENERATED_DIR}/yolo11x.onnx
-  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/GetModel.sh
-  WORKING_DIRECTORY ${ONNX_GENERATED_DIR}
-  COMMENT "Запуск генерации файлов..."
-  VERBATIM
+  OUTPUT ${GENERATED_FILES}
+  COMMAND bash ${SETUP_SCRIPT}
+  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+  DEPENDS ${SETUP_SCRIPT}
+)
+
+add_custom_target(generate_output ALL
+  DEPENDS ${GENERATED_FILES}
 )
 
 
