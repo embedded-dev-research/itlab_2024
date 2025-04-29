@@ -12,6 +12,9 @@ int main() {
     const int input_width  = 3;
     const int input_height = 3;
 
+    const Coordinates Starts = Coordinates(0, 0);
+    const Coordinates Ends = Coordinates(2, 0);
+
     input.allocator()->init(TensorInfo(TensorShape(input_width, input_height, 1), 1, DataType::F32));
     output.allocator()->init(TensorInfo(TensorShape(input_width, input_height, 1), 1, DataType::F32));
 
@@ -20,10 +23,10 @@ int main() {
 
     fill_random_tensor(input, 0.f, 1.f);
 
-    NEReshapeLayer reshape; 
-    reshape.configure(&input, &output);
+    NESlice slice; 
+    slice.configure(&input, &output, Starts, Ends);
 
-    reshape.run();
+    slice.run();
 
     output.print(std::cout);
 }
