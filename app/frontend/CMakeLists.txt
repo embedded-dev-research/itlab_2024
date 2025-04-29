@@ -5,16 +5,16 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Protobuf REQUIRED)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/generated)
+
 
 set(ONNX_GENERATED_DIR "${CMAKE_SOURCE_DIR}/app/frontend/build/generated") 
 
 set(ONNX_PROTO_SRCS
-    "${ONNX_GENERATED_DIR}/app/frontend/build/onnx.pb.cc"
+    "${ONNX_GENERATED_DIR}/app/frontend/build/generated/onnx.pb.cc"
 )
 
 set(ONNX_GENERATED_HEADER 
-    "${ONNX_GENERATED_DIR}/app/frontend/build/onnx.pb.h"
+    "${ONNX_GENERATED_DIR}/app/frontend/build/generated/onnx.pb.h"
 ) 
 
 set(SRC_FILES
@@ -22,7 +22,7 @@ set(SRC_FILES
     ${ONNX_PROTO_SRCS}
 )
 
-set(SETUP_SCRIPT ${CMAKE_SOURCE_DIR}/GetModel.sh)
+set(SETUP_SCRIPT ${CMAKE_SOURCE_DIR}/app/frontend/GetModel.sh)
 
 
 set(GENERATED_FILES
@@ -43,11 +43,9 @@ add_custom_target(generate_output ALL
 )
 
 
-
-set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/ PROPERTIES GENERATED TRUE)
-set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/onnx.pb.h PROPERTIES GENERATED TRUE)
-set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/onnx.pb.cc PROPERTIES GENERATED TRUE)
-set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/yolo11x.onnx PROPERTIES GENERATED TRUE)
+set_source_files_properties(${ONNX_GENERATED_HEADER} PROPERTIES GENERATED TRUE)
+set_source_files_properties(${ONNX_PROTO_SRCS} PROPERTIES GENERATED TRUE)
+set_source_files_properties(${ONNX_GENERATED_DIR}/yolo11x.onnx PROPERTIES GENERATED TRUE)
 
 
 add_executable(ModelParser 
