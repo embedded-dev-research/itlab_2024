@@ -8,7 +8,7 @@
 #include <vector>
 
 #include "layer/layer.h"
-#include "tesnor/tensor.h"
+#include "tensor/tensor.h"
 
 Graph::Graph() : inputTensor_({}), outputTensor_(nullptr) {}
 

@@ -1,5 +1,5 @@
 
-#include "tesnor/tensor.h"
+#include "tensor/tensor.h"
 
 #include <cstddef>
 #include <numeric>
