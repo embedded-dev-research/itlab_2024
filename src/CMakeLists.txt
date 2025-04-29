@@ -6,3 +6,4 @@ add_library(${CMAKE_PROJECT_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${HEADER_FILES})
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/src)
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
