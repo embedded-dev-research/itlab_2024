@@ -35,6 +35,7 @@ add_custom_command(
 
 
 
+set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/ PROPERTIES GENERATED TRUE)
 set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/onnx.pb.h PROPERTIES GENERATED TRUE)
 set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/onnx.pb.cc PROPERTIES GENERATED TRUE)
 set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/yolo11x.onnx PROPERTIES GENERATED TRUE)
