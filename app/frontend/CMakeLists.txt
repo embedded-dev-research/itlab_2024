@@ -22,38 +22,28 @@ set(SRC_FILES
     ${ONNX_PROTO_SRCS}
 )
 
+add_custom_command(
+  OUTPUT 
+    ${ONNX_GENERATED_DIR}/onnx.pb.cc
+    ${ONNX_GENERATED_DIR}/onnx.pb.h
+    ${ONNX_GENERATED_DIR}/yolo11x.onnx
+  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/GetModel.sh
+  WORKING_DIRECTORY ${ONNX_GENERATED_DIR}
+  COMMENT "Запуск генерации файлов..."
+  VERBATIM
+)
+
+
+
 set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/onnx.pb.h PROPERTIES GENERATED TRUE)
 set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/onnx.pb.cc PROPERTIES GENERATED TRUE)
 set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/generated/yolo11x.onnx PROPERTIES GENERATED TRUE)
 
 
-set(YOLO_SRC "${CMAKE_SOURCE_DIR}/generated/yolo11x.onnx")
-set(YOLO_DST "${CMAKE_CURRENT_BINARY_DIR}/generated/yolo11x.onnx")
-
-
-set(ONNX_SRC "${CMAKE_CURRENT_BINARY_DIR}/generated/onnx.pb.h")
-set(ONNX_HEADER "${CMAKE_CURRENT_BINARY_DIR}/generated/onnx.pb.cc")
-
-if(EXISTS "${YOLO_SRC}")
-    configure_file(${YOLO_SRC} ${YOLO_DST} COPYONLY)
-else()
-    file(WRITE "${YOLO_DST}" "")
-endif()
-
-if(EXISTS "${ONNX_PROTO_SRCS}")
-    configure_file(${ONNX_PROTO_SRCS} ${ONNX_SRC} COPYONLY)
-else()
-    file(WRITE "${ONNX_SRC}" "")
-endif()
-
-if(EXISTS "${ONNX_GENERATED_HEADER}")
-    configure_file(${ONNX_GENERATED_HEADER} ${ONNX_HEADER} COPYONLY)
-else()
-    file(WRITE "${ONNX_HEADER}" "")
-endif()
-
-
-add_executable(ModelParser main.cpp) 
+add_executable(ModelParser 
+  main.cpp
+  ${ONNX_GENERATED_DIR}/onnx.pb.cc 
+)
 
 target_include_directories(ModelParser PRIVATE
     ${ONNX_GENERATED_DIR} 
@@ -62,6 +52,5 @@ target_include_directories(ModelParser PRIVATE
 
 target_link_libraries(ModelParser 
     ${Protobuf_LIBRARIES}   
-    ${ONNX_GENERATED_HEADER}
-    "IR.h"
+    ${ONNX_GENERATED_DIR}
 )
