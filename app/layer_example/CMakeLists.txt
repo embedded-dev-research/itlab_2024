@@ -1,11 +1,11 @@
 set(ARM_DIR "${CMAKE_SOURCE_DIR}/3rdparty/ComputeLibrary")
 
-add_executable(MatMul MatMulLayer.cpp)
+add_executable(Reshape ReshapeLayer.cpp)
 
 include_directories(${ARM_DIR})
 include_directories(${ARM_DIR}/include)
-target_link_directories(MatMul PUBLIC ${ARM_DIR}/build)
+target_link_directories(Reshape PUBLIC ${ARM_DIR}/build)
 
-target_link_libraries(MatMul arm_compute)
+target_link_libraries(Reshape arm_compute)
 
-add_dependencies(MatMul build_compute_library)
+add_dependencies(Reshape build_compute_library)
