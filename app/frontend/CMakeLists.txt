@@ -24,6 +24,7 @@ set(SRC_FILES
 
 add_custom_command(
   OUTPUT 
+    ${ONNX_GENERATED_DIR}
     ${ONNX_GENERATED_DIR}/onnx.pb.cc
     ${ONNX_GENERATED_DIR}/onnx.pb.h
     ${ONNX_GENERATED_DIR}/yolo11x.onnx
