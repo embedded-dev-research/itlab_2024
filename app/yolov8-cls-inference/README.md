@@ -25,5 +25,5 @@
 4. Run the project 
    ```
    make -C build
-   build/yolov8-cls-inference <image path>
+   build/yolov8-cls-inference <model path> <class list path> <image path>
    ```
