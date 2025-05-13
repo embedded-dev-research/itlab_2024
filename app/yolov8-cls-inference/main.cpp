@@ -11,20 +11,20 @@
 #include <vector>
 
 int main(int argc, char** argv) {
-  if (argc < 2) {
-    std::cerr << "[fatal error] Path to an input image is missing\n";
+  if (argc < 4) {
+    std::cerr << "[fatal error] Not all required parameters are specified\n";
     return 1;
   }
 
   // read an input image
-  cv::Mat raw_image = cv::imread(argv[1]);
+  cv::Mat raw_image = cv::imread(argv[3]);
   if (raw_image.empty()) {
     std::cerr << "[fatal error] Failed to read the input image\n";
     return 1;
   }
 
   // read the classification list
-  std::ifstream file("classification_list.txt");
+  std::ifstream file(argv[2]);
 
   if (!file.is_open()) {
     std::cerr << "[fatal error] Failed to open the classification list file\n";
@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
   }
 
   // read the network model
-  cv::dnn::Net net = cv::dnn::readNetFromONNX("yolov8n-cls.onnx");
+  cv::dnn::Net net = cv::dnn::readNetFromONNX(argv[1]);
   if (net.empty()) {
     std::cerr << "[fatal error] Failed to read the network model\n";
     return 1;
