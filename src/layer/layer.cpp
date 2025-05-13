@@ -7,3 +7,7 @@ void Layer::addNeighbor(Layer* neighbor) {
 }
 
 void Layer::removeNeighbor(Layer* neighbor) { neighbors_.remove(neighbor); }
+
+std::string Layer::getInfoString() const {
+  return "Layer (ID: " + std::to_string(id_) + ")";
+}

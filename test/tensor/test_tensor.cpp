@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <string>
 
 #include "./tensor/tensor.h"
 #include "gtest/gtest.h"
@@ -11,35 +12,39 @@ TEST(ShapeTest, get_rank_and_elem_checks) {
 }
 
 TEST(TensorTestDouble, can_at_to_tensor) {
-  Tensor<double> t({2, 3}, Layout::kNd);
+  Tensor<double> t({2, 3}, Layout::kNd);  
+
   t.at({0, 0}) = 1.0;
   t.at({0, 1}) = 2.0;
   t.at({0, 2}) = 3.0;
-  t.at({1, 0}) = 4.0;
+  t.at({1, 0}) = 4.0; 
   t.at({1, 1}) = 5.0;
   t.at({1, 2}) = 6.0;
 
+  ASSERT_DOUBLE_EQ(t.at({0, 0}), 1.0);
   ASSERT_DOUBLE_EQ(t.at({0, 1}), 2.0);
-  ASSERT_DOUBLE_EQ(t.at({0, 2}), 4.0);
+  ASSERT_DOUBLE_EQ(t.at({0, 2}), 3.0);
   ASSERT_DOUBLE_EQ(t.at({1, 0}), 4.0);
   ASSERT_DOUBLE_EQ(t.at({1, 1}), 5.0);
   ASSERT_DOUBLE_EQ(t.at({1, 2}), 6.0);
 
   const Tensor<double> &ct = t;
-
   ASSERT_DOUBLE_EQ(ct.at({0, 1}), 2.0);
 }
 
-TEST(TensorTestDouble, can_get_linear_index2D_ND) {
-  Tensor<double> t({2, 3}, Layout::kNd);
+TEST(TensorTestDouble, can_get_linear_index2D_ND_RowMajor) {
+  Tensor<double> t({2, 3}, Layout::kNd); 
 
-  ASSERT_EQ(t.get_linear_index({0, 0}), 0);
-  ASSERT_EQ(t.get_linear_index({0, 2}), 2);
-  ASSERT_EQ(t.get_linear_index({1, 0}), 2);
-  ASSERT_EQ(t.get_linear_index({1, 2}), 4);
+  ASSERT_EQ(t.get_linear_index({0, 0}), 0 * 3 + 0); 
+  ASSERT_EQ(t.get_linear_index({0, 1}), 0 * 3 + 1);  
+  ASSERT_EQ(t.get_linear_index({0, 2}), 0 * 3 + 2);  
+  ASSERT_EQ(t.get_linear_index({1, 0}), 1 * 3 + 0);
+  ASSERT_EQ(t.get_linear_index({1, 1}), 1 * 3 + 1);
+  ASSERT_EQ(t.get_linear_index({1, 2}), 1 * 3 + 2);
 }
 
 TEST(TensorTestDouble, can_get_linear_index4D_NCHW) {
+
   Tensor<double> t({2, 3, 4, 5}, Layout::kNchw);
 
   ASSERT_EQ(t.get_linear_index({0, 0, 0, 0}), 0);
@@ -51,8 +56,10 @@ TEST(TensorTestDouble, can_get_linear_index4D_NHWC) {
 
   ASSERT_EQ(t.get_linear_index({0, 0, 0, 0}), 0);
   ASSERT_EQ(t.get_linear_index({1, 2, 3, 4}), 119);
+  ASSERT_EQ(t.get_linear_index({0, 1, 2, 3}), 40);
 }
-TEST(TensorTestDouble, can_get_linear_index4D_ND) {
+
+TEST(TensorTestDouble, can_get_linear_index4D_ND_is_RowMajor) {
   Tensor<double> t4d_nd({2, 3, 4, 5}, Layout::kNd);
 
   ASSERT_EQ(t4d_nd.get_linear_index({0, 0, 0, 0}), 0);

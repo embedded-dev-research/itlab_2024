@@ -7,7 +7,7 @@
 #include "./layer/layer.h"
 #include "./tensor/tensor.h"
 
-class Graph {
+class Network {
  private:
   std::unordered_map<int, Layer*> layers_;
   Tensor<double> inputTensor_;
@@ -18,21 +18,22 @@ class Graph {
                   std::vector<int>* v_ord) const;
 
  public:
-  Graph();
+  Network();
 
-  void addLayer(Layer& lay);
+  bool addLayer(Layer& lay, const std::vector<int>& inputs ={}, const std::vector<int>& outputs = {});
   void addEdge(Layer& layPrev, Layer& layNext);
   void removeEdge(Layer& layPrev, Layer& layNext);
   void removeLayer(Layer& lay);
   int getLayers() const;
   int getEdges() const;
-  bool empty() const;
+  bool isEmpty() const;
   bool hasPath(Layer& layPrev, Layer& layNext) const;
-  std::vector<int> BFS(int start);
+  std::vector<int> inference(int start) const;
   void setInput(Layer& lay, Tensor<double>& vec);
   void setOutput(Layer& lay, Tensor<double>& vec);
-  void inference();
-  ~Graph();
+  void run();
+  std::vector<std::string> getLayersTypeVector() const;
+  ~Network();
 };
 
 #endif
