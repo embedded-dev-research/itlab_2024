@@ -40,7 +40,7 @@ add_executable(ModelParser
   main.cpp
   "${ONNX_GENERATED_DIR}/onnx.pb.cc"
 )
-
+add_dependencies(ModelParser generate_output)
 target_include_directories(ModelParser PRIVATE
   "${ONNX_GENERATED_DIR}"
   ${Protobuf_INCLUDE_DIRS}
