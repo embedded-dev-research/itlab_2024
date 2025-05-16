@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(ModelParser)
 
 find_package(Protobuf REQUIRED)
+set(ONNX_GENERATED_DIR "${CMAKE_SOURCE_DIR}/app/frontend/build/generated")
 
 
 set(SETUP_SCRIPT "${CMAKE_SOURCE_DIR}/app/frontend/GetModel.sh")
