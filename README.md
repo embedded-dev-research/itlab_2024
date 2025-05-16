@@ -69,3 +69,7 @@
   source .venv/bin/activate
   pip install -e . -v
   ```
+4. Run to verify it works.:
+  ```
+   python -c "import onnx"
+  ```
