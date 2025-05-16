@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "onnx.pb.h"
+#include "./generated/onnx.pb.h"
 
 int main() {
   std::ifstream model_file("generated/yolo11x.onnx", std::ios::binary);
