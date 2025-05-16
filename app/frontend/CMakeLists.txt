@@ -20,7 +20,7 @@ add_custom_command(
     COMMAND ${CMAKE_COMMAND} -E chdir ${ONNX_GENERATED_DIR} bash ${SETUP_SCRIPT} "${ONNX_GENERATED_DIR}"
     WORKING_DIRECTORY "${ONNX_GENERATED_DIR}"
     DEPENDS ${SETUP_SCRIPT}
-    COMMENT "Создаём каталог и генерируем ONNX-файлы"
+    COMMENT "Create directory, generate ONNX-files and get YOLO model"
     )
     
 add_custom_target(generate_output ALL
