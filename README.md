@@ -55,7 +55,7 @@
   ```
 
 2. Open directory where you want to save the [ONNX library](https://github.com/onnx/onnx.git).
-
+ 
 3. Open a terminal and execute these commands:
   ```
   git clone https://github.com/onnx/onnx.git
