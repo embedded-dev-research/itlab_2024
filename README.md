@@ -46,7 +46,7 @@
    If your OpenCV build does not use CUDA/cuDNN you can remove that import call and run the example on CPU.
 
 ## How to build ONNX library on Linux(Ubuntu)
-
+ 
 1. Install necessary tools:
   ```
   sudo apt-get install -y python3-pip
@@ -58,7 +58,6 @@
 
 3. Open a terminal and execute these commands:
   ```
-  git clone https://github.com/onnx/onnx.git
   cd onnx
   git submodule update --init --recursive
   export CMAKE_ARGS='-DONNX_USE_LITE_PROTO=ON -DONNX_USE_PROTOBUF_SHARED_LIBS=ON'
@@ -69,4 +68,8 @@
   python3 -m venv .venv
   source .venv/bin/activate
   pip install -e . -v
+  ```
+4. Run to verify it works.:
+  ```
+   python -c "import onnx"
   ```
