@@ -30,11 +30,11 @@ const bool IR::operator==(const IR& _other) const {
     first_model_map.insert(it.getId(), std::to_string(hashMaker(it.vec)));
   }
   
-  for (auto it : _other._graph){
+  for (auto it : _other._graph) {
     second_model_map.insert(it.getId(), std::to_string(hashMaker(it.vec)));
   }
 
-  if (first_model_map == second_model_map){
+  if (first_model_map == second_model_map) {
     return true;
   }
   return false;
