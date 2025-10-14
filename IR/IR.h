@@ -2,7 +2,6 @@
 #include <string>
 #include <thread>
 #include <unordered_map>
-
 #include "graph.h"
 #include "map"
 
@@ -47,12 +46,6 @@ class OPENCV_ModelParser : public ModelParser {
       : ModelParser(std::move(filename)) {}
   Network Parse() override;
 };
-
-// class PYTORCH_ModelParser : ModelParser{
-// public:
-// explicit OPENCV_ModelParser(std::string filename) :
-// ModelParser(std::move(filename)) {} Graph Parse() override;
-// };
 
 class IR {
  private:

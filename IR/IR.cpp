@@ -12,9 +12,6 @@ IR::IR(std::string filename, Model model) : _graph() {
       _modelParser = new OPENCV_ModelParser(_fileName);
       break;
 
-    // case Model::PYTORCH:
-    //     _modelParser = new OPENCV_ModelParser(_fileName);
-    //     break;
     default:
       break;
   }
@@ -30,10 +27,10 @@ const bool IR::operator==(const IR& _other) const {
 
   std::vector<std::string> vec = _graph.getLayersTypeVector();
   for (auto it : _graph) {
-    first_model_map.insert(it.getId(), to_string(hashMaker(it.vec)));
+    first_model_map.insert(it.getId(), std::to_string(hashMaker(it.vec)));
   }
   for (auto it : _other._graph){
-    second_model_map.insert(it.getId(), to_string(hashMaker(it.vec)));
+    second_model_map.insert(it.getId(), std::to_string(hashMaker(it.vec)));
   }
 
   if (first_model_map == second_model_map){
